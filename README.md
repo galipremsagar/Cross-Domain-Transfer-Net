@@ -9,3 +9,6 @@ Generative Adversarial Networks have been successful in generating novel (but co
 Digit Transfer : SVHN to MNIST
 
 Face Transfer: CelebA to Emoji/Simpson/Cartoons
+
+
+To Run the server, Run app.py: `python app.py`
