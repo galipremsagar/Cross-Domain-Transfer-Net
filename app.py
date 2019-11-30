@@ -74,7 +74,7 @@ sample_digits_encoded = [pil_to_b64(i) for i in sample_digits_imgs]
 
 app.layout = html.Div([
     html.H1(
-        children='Unsupervised Cross-Domain Image Generation using GANs',
+        children='Sketch Art',
         style={
             'textAlign': 'center'
         }
@@ -87,115 +87,115 @@ app.layout = html.Div([
     ),
     html.Div([
         dcc.Tabs(id="tabs", children=[
-            dcc.Tab(label='Digits Transfer', children=[
-                html.H4('SVHN (Source) -> MNIST (Target)',
-                        style={
-                            'textAlign': 'center'
-                        }
-                        ),
-                html.P(
-                    'For Digit Transfer, we use Street View House Numbers(SVHN) and MNIST databse of handwritten digits. SVHN training set consists of 73257 images, and MNIST training set size is 60000. All images are resized to (32,32) and SVHN images are normalize to [-1,1].'),
-                html.P(
-                    'We take SVHN as `Source` and MNIST as `Target`. Features (F-Model) for the SVHN images are extracted using four blocks of convolution layers with ReLU nonlinearity.To encode the features, we have taken first 7 layers of F model as `f` block in the digit model, so that it encodes the features from the images.'),
-                # html.Section(id="slideshow", children=[
-                #     html.Div(id="slideshow-container", children=[
-                #         html.Div(id="image"),
-                #         dcc.Interval(id='interval', interval=3000)
-                #     ])
-                # ]),
-                html.H6('Sample Generated Images (SVHN generated in MNIST domain)'),
-                html.Div(id='digits-sample-container', children=[
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[0],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[1],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[2],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[3],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[4],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[5],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[6],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[7],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[8],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[9],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[10],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[11],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[12],
-                        width='200px'
-                    ),
-                    html.Img(
-                        src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[13],
-                        width='200px'
-                    )
-                ]),
-                html.H6('Try out on SVHN Test Dataset...',
-                        style={
-                            'textAlign': 'center'
-                        }
-                        ),
-                html.P('Select test image from dropdown:-',
-                       style={
-                           'textAlign': 'center'
-                       }
-                       ),
-                dcc.Dropdown(
-                    id='digits-dropdown',
-                    options=digits_display_images,
-                    value='20',
-                    style={
-                        'textAlign': 'center',
-                        'width': '45%',
-                        'margin-left': '28%'
-                    }
-                ),
-                html.Hr(),
-                html.P('Gnereated image in MNIST domain for selected SVHN image..',
-                       style={
-                           'textAlign': 'center'
-                       }
-                       ),
-                html.Div(id='digits-result',
-                         style={
-                             'textAlign': 'center',
-                         }
-                         ),
-                html.Hr()
-            ]),
-            dcc.Tab(label='Face To Emoji', children=[
+            # dcc.Tab(label='Digits Transfer', children=[
+            #     html.H4('SVHN (Source) -> MNIST (Target)',
+            #             style={
+            #                 'textAlign': 'center'
+            #             }
+            #             ),
+            #     html.P(
+            #         'For Digit Transfer, we use Street View House Numbers(SVHN) and MNIST databse of handwritten digits. SVHN training set consists of 73257 images, and MNIST training set size is 60000. All images are resized to (32,32) and SVHN images are normalize to [-1,1].'),
+            #     html.P(
+            #         'We take SVHN as `Source` and MNIST as `Target`. Features (F-Model) for the SVHN images are extracted using four blocks of convolution layers with ReLU nonlinearity.To encode the features, we have taken first 7 layers of F model as `f` block in the digit model, so that it encodes the features from the images.'),
+            #     # html.Section(id="slideshow", children=[
+            #     #     html.Div(id="slideshow-container", children=[
+            #     #         html.Div(id="image"),
+            #     #         dcc.Interval(id='interval', interval=3000)
+            #     #     ])
+            #     # ]),
+            #     html.H6('Sample Generated Images (SVHN generated in MNIST domain)'),
+            #     html.Div(id='digits-sample-container', children=[
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[0],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[1],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[2],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[3],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[4],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[5],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[6],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[7],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[8],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[9],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[10],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[11],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[12],
+            #             width='200px'
+            #         ),
+            #         html.Img(
+            #             src=HTML_IMG_SRC_PARAMETERS + sample_digits_encoded[13],
+            #             width='200px'
+            #         )
+            #     ]),
+            #     html.H6('Try out on SVHN Test Dataset...',
+            #             style={
+            #                 'textAlign': 'center'
+            #             }
+            #             ),
+            #     html.P('Select test image from dropdown:-',
+            #            style={
+            #                'textAlign': 'center'
+            #            }
+            #            ),
+            #     dcc.Dropdown(
+            #         id='digits-dropdown',
+            #         options=digits_display_images,
+            #         value='20',
+            #         style={
+            #             'textAlign': 'center',
+            #             'width': '45%',
+            #             'margin-left': '28%'
+            #         }
+            #     ),
+            #     html.Hr(),
+            #     html.P('Gnereated image in MNIST domain for selected SVHN image..',
+            #            style={
+            #                'textAlign': 'center'
+            #            }
+            #            ),
+            #     html.Div(id='digits-result',
+            #              style={
+            #                  'textAlign': 'center',
+            #              }
+            #              ),
+            #     html.Hr()
+            # ]),
+            dcc.Tab(label='Face To Sketch', children=[
                 html.Div(children=[
                     html.Div(children=[
                         html.H4('CelebA (Source) -> Emoji (Target)',
@@ -322,6 +322,27 @@ app.layout = html.Div([
     [Input(component_id='upload-image', component_property='contents')]
 )
 def update_emoji(contents):
+    Gnet = SketchNet(in_channels=3, out_channels=1, norm_type=args.Gnorm)
+    # gpu_ids = [int(x) for x in args.gpus.split(',')]
+    gpu_ids = []
+    if len(gpu_ids) > 0:
+        # Gnet.cuda()
+        Gnet = nn.DataParallel(Gnet, device_ids=gpu_ids)
+    else:
+        Gnet = nn.DataParallel(Gnet, device_ids=gpu_ids)
+    Gnet.eval()
+    Gnet.load_state_dict(torch.load(args.test_weight_path, map_location='cpu'))
+
+    utils.mkdirs(args.result_dir)
+    for img_name in os.listdir(args.test_dir):
+        test_img_path = os.path.join(args.test_dir, img_name)
+        test_img = img_process.read_img_var(test_img_path, size=(256, 256))
+        face_pred = Gnet(test_img)
+
+        sketch_save_path = os.path.join(args.result_dir, img_name)
+        img_process.save_var_img(face_pred, sketch_save_path, (250, 200))
+        print('Save sketch in', sketch_save_path)
+
 
     print(contents)
     if contents:
@@ -339,7 +360,7 @@ def update_emoji(contents):
         ),
         html.Img(
 
-            src=HTML_IMG_SRC_PARAMETERS + out,
+            src=HTML_IMG_SRC_PARAMETERS + out if out is not None else '',
             width='200px'
         )
     ], style={
@@ -399,40 +420,41 @@ def update_simpson(contents):
         ),
         html.Img(
 
-            src=HTML_IMG_SRC_PARAMETERS + out,
+            src=HTML_IMG_SRC_PARAMETERS + out if out is not None else '',
             width='200px'
         )
     ], style={
         'textAlign': 'center'
     })
 
-
-@app.callback(
-    dash.dependencies.Output('digits-result', 'children'),
-    [dash.dependencies.Input('digits-dropdown', 'value')])
-def update_output(value):
-    print(value)
-
-    orig_img = digits_server.get_svhn_image(int(value))
-    out_img = digits_server.digits_predict(orig_img)
-
-    encoded_orig = pil_to_b64(orig_img)
-    encoded_out = numpy_to_b64(out_img)
-
-    return html.Div(children=[
-        html.Img(
-            id='img-' + str(value),
-            src=HTML_IMG_SRC_PARAMETERS + encoded_orig,
-            width='200px'
-        ),
-        html.Img(
-            id='img-' + str(value),
-            src=HTML_IMG_SRC_PARAMETERS + encoded_out,
-            width='200px'
-        )
-    ], style={
-        'textAlign': 'center'
-    })
+#
+# @app.callback(
+#     dash.dependencies.Output('digits-result', 'children'),
+#     # [dash.dependencies.Input('digits-dropdown', 'value')]
+# )
+# def update_output(value):
+#     print(value)
+#
+#     orig_img = digits_server.get_svhn_image(int(value))
+#     out_img = digits_server.digits_predict(orig_img)
+#
+#     encoded_orig = pil_to_b64(orig_img)
+#     encoded_out = numpy_to_b64(out_img)
+#
+#     return html.Div(children=[
+#         html.Img(
+#             id='img-' + str(value),
+#             src=HTML_IMG_SRC_PARAMETERS + encoded_orig,
+#             width='200px'
+#         ),
+#         html.Img(
+#             id='img-' + str(value),
+#             src=HTML_IMG_SRC_PARAMETERS + encoded_out,
+#             width='200px'
+#         )
+#     ], style={
+#         'textAlign': 'center'
+#     })
 
 
 if __name__ == '__main__':
